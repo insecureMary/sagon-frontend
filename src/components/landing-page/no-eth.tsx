@@ -35,7 +35,7 @@ const NoETH: React.FC = () => {
               Sagon's backend is written in pure Huff, an assembly language that gives us direct access to the EVM. This low-level control allows us to optimize every opcode, resulting in a transfer system that's both lightning-fast and battle-tested for security.
             </h1>
             <h1 className="text-[30px] md:text-[36px] lg:text-[47px] font-bold text-[#29BEE7] leading-tight mt-30">
-                That is how we save you from ridiculous gas fees, Don’t Mention!
+                This is how we send tokens with token as gas!
             </h1>
           </div>
 
