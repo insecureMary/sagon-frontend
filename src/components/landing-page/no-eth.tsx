@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { HiChevronRight } from 'react-icons/hi';
 
 const NoETH: React.FC = () => {
   return (
@@ -23,20 +24,23 @@ const NoETH: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-6 py-6 relative z-10 h-full">
-        <div className="flex items-center h-full">
+        <div className="flex items-center justify-center h-full">
           <div className="max-w-9xl">
-            <div className="inline-block px-4 py-2 border-2 border-[#008236] rounded-full">
-              <span className="text-[10px] font-medium text-[#008236]">
-                Send Tokens Without Ether! COMING SOON!!!
+            <div className="flex px-4 py-2 border-2 border-[#008236] rounded-full flex justify-center place-self-center">
+              <span className="text-[10px] font-medium text-[#008236] ">
+                  COMING SOON!
               </span>
             </div>
 
-            <h1 className="text-[36px] md:text-[46px] lg:text-[66px] font-bold text-[#D6D6D6] leading-tight mb-6">
-              Sagon's backend is written in pure Huff, an assembly language that gives us direct access to the EVM. This low-level control allows us to optimize every opcode, resulting in a transfer system that's both lightning-fast and battle-tested for security.
+            <h1 className="text-[36px] md:text-[46px] lg:text-[66px] font-bold text-[#D6D6D6] leading-tight mb-6 text-center">
+              How about the "token to send tokens bs?"
             </h1>
-            <h1 className="text-[30px] md:text-[36px] lg:text-[47px] font-bold text-[#29BEE7] leading-tight mt-30">
-                This is how we send tokens with token as gas!
-            </h1>
+            <div className="flex justify-center">
+              <button className="px-6 py-2.5 rounded-lg font-semibold text-[#008236] border-2 border-[#008236] hover:opacity-90 transition-opacity duration-200 flex items-center gap-2">
+                <div className='button-text'>Read More About it here</div>
+                <HiChevronRight className="animate-arrow-slide text-xl" />
+              </button>
+            </div>
           </div>
 
           <div className="absolute bottom-4 right-10 w-64 h-64">
@@ -48,7 +52,7 @@ const NoETH: React.FC = () => {
       </div>
 
 
-      <style jsx>{`
+      <style jsx global>{`
         @keyframes fall {
           0% {
             transform: translateY(-100vh) rotate(0deg);
@@ -58,10 +62,38 @@ const NoETH: React.FC = () => {
           }
         }
 
+        @keyframes arrowMove {
+          0%, 100% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateX(10px);
+          }
+        }
+
+        @keyframes textMove {
+          0%, 100% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateX(-10px);
+          }
+        }
+
         .snowflake {
           animation: fall linear infinite;
         }
+
+        .animate-arrow-slide{
+          animation: arrowMove 1.5s ease-in-out infinite;
+        }
+
+        .button-text {
+          animation: textMove 1.5s ease-in-out infinite;
+        }
       `}</style>
+
+
     </section>
   );
 };
