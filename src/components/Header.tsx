@@ -10,7 +10,7 @@ export default function Header() {
             <div className="flex items-center gap-2.5 md:gap-6">
                 <a href="/" className="flex items-center gap-1">
 
-                    <h1 className="font-bold text-2xl hidden md:block text-foreground">Tradon</h1>
+                    <h1 className="font-bold text-2xl hidden md:block text-foreground">SAGON</h1>
                 </a>
             </div>
 
