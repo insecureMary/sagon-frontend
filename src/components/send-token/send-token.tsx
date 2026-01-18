@@ -48,7 +48,6 @@ export default function SendToken() {
                             }`}
                         >
                             <div className="flex items-center justify-center gap-2">
-                                <span className="text-2xl">⚡</span>
                                 <div className="text-left">
                                     <div className="text-sm font-bold">OPTIMIZED</div>
                                     <div className="text-xs opacity-75">Huff Assembly</div>
@@ -68,7 +67,6 @@ export default function SendToken() {
                             }`}
                         >
                             <div className="flex items-center justify-center gap-2">
-                                <span className="text-2xl">🔥</span>
                                 <div className="text-left">
                                     <div className="text-sm font-bold">STANDARD</div>
                                     <div className="text-xs opacity-75">Solidity</div>
@@ -111,7 +109,6 @@ export default function SendToken() {
                     </div>
                 </div>
 
-                {/* Content Area */}
                 <div className="mt-8">
                     {activeTab === "optimized" ? (
                         <OptimizedAirdrop onGasUsed={(gas) => setGasUsed(prev => ({ ...prev, optimized: gas }))} />
@@ -120,14 +117,12 @@ export default function SendToken() {
                     )}
                 </div>
 
-                {/* Guidelines Section */}
                 <div className="mt-16 max-w-4xl mx-auto">
                     <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                         How It Works
                     </h2>
                     <div className="grid md:grid-cols-3 gap-6">
                         <div className="p-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
-                            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📝</div>
                             <h3 className="font-bold text-lg mb-2 text-cyan-300">1. Enter Details</h3>
                             <p className="text-slate-400 text-sm">
                                 Provide the token address, recipient addresses (comma or newline separated), and amounts for each recipient.
@@ -135,7 +130,6 @@ export default function SendToken() {
                         </div>
 
                         <div className="p-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
-                            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">✅</div>
                             <h3 className="font-bold text-lg mb-2 text-cyan-300">2. Approve Tokens</h3>
                             <p className="text-slate-400 text-sm">
                                 The system automatically checks allowance and requests approval if needed before executing the airdrop.
@@ -143,7 +137,6 @@ export default function SendToken() {
                         </div>
 
                         <div className="p-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
-                            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
                             <h3 className="font-bold text-lg mb-2 text-cyan-300">3. Execute Airdrop</h3>
                             <p className="text-slate-400 text-sm">
                                 Tokens are distributed efficiently in a single transaction, saving you time and gas fees.
