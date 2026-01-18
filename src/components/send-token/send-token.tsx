@@ -16,14 +16,12 @@ export default function SendToken() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-white">
-            {/* Animated background effect */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-radial from-blue-500/10 via-transparent to-transparent animate-pulse-slow" />
                 <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-radial from-cyan-500/10 via-transparent to-transparent animate-pulse-slow-delayed" />
             </div>
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                {/* Header */}
                 <div className="text-center mb-12 space-y-4">
                     <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent font-mono tracking-tight">
                         SAGON PROTOCOL
@@ -34,12 +32,11 @@ export default function SendToken() {
                     </p>
                 </div>
 
-                {/* Gas Comparison Dashboard */}
                 {(gasUsed.optimized || gasUsed.standard) && (
                     <GasComparison optimizedGas={gasUsed.optimized} standardGas={gasUsed.standard} />
                 )}
 
-                {/* Tab Navigation */}
+
                 <div className="mb-8">
                     <div className="flex items-center justify-center gap-4 p-2 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-2xl max-w-2xl mx-auto">
                         <button
