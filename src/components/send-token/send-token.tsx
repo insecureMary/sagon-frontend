@@ -15,7 +15,7 @@ export default function SendToken() {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-white">
+        <div className="min-h-screen">
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-radial from-blue-500/10 via-transparent to-transparent animate-pulse-slow" />
                 <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-radial from-cyan-500/10 via-transparent to-transparent animate-pulse-slow-delayed" />
