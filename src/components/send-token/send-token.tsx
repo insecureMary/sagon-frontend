@@ -1,82 +1,180 @@
 "use client";
 
-import InputForm from "@/components/ui/input-field";
-import { useMemo, useState } from "react";
-import { chainsToTSender, tsenderAbi, erc20Abi } from "@/constants";
-import { useChainId, useConfig, useAccount, useWriteContract } from 'wagmi'
-import {readContract, waitForTransactionReceipt} from "@wagmi/core";
-import  {calculateTotal}  from "@/util/calculateTotal";
+import { useState } from "react";
+import OptimizedAirdrop from "@/components/send-token/optimized-send";
+import StandardAirdrop from "@/components/send-token/standard-send";
+import GasComparison from "@/components/send-token/gas-comparison";
 
-export default function AirdropForm() {
-    const [tokenAddress, setTokenAddress] = useState("")
-    const [recipients, setRecipients] = useState("")
-    const [amount, setAmount] = useState("")
-    const chainid = useChainId()
-    const config = useConfig()
-    const account = useAccount()
-    const total: number = useMemo(() =>calculateTotal(amount), [amount]);
-    const {data: hash, isPending, writeContractAsync} = useWriteContract()
+type TabType = "optimized" | "standard";
 
+export default function SendToken() {
+    const [activeTab, setActiveTab] = useState<TabType>("optimized");
+    const [gasUsed, setGasUsed] = useState<{ optimized: number | null; standard: number | null }>({
+        optimized: null,
+        standard: null
+    });
 
-    async function getApprovedAmount(tsenderAddress: string | null): Promise<number> {
-        if (!tsenderAddress){
-            alert("Unsupported chain");
-            return 0
-        }
-        const approvedAmount = await readContract(config, {
-            abi: erc20Abi,
-            address: tokenAddress as `0x${string}`,
-            functionName: "allowance",
-            args: [account.address, tsenderAddress as `0x${string}`],
-        });
-        return approvedAmount as number;
-    }
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-white">
+            {/* Animated background effect */}
+            <div className="fixed inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-radial from-blue-500/10 via-transparent to-transparent animate-pulse-slow" />
+                <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-radial from-cyan-500/10 via-transparent to-transparent animate-pulse-slow-delayed" />
+            </div>
 
-    async function handleSubmit() {
-        const tSenderAddress = chainsToTSender[chainid]["tsender"]
-        const approvedAmount = await getApprovedAmount(tSenderAddress);
-        if (approvedAmount < total) {
-            const approvalHash = await writeContractAsync({
-                abi: erc20Abi,
-                address: tokenAddress as `0x${string}`,
-                functionName: "approve",
-                args: [tSenderAddress as `0x${string}`, BigInt(total)],
-            });
-            const approvalReceipt = await waitForTransactionReceipt(config, {
-                hash: approvalHash,
-            });
-            console.log("Approval transaction mined:", approvalReceipt);
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                {/* Header */}
+                <div className="text-center mb-12 space-y-4">
+                    <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent font-mono tracking-tight">
+                        SAGON PROTOCOL
+                    </h1>
+                    <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                        Ultra-efficient token airdrops powered by Huff assembly. 
+                        <span className="text-cyan-400 font-semibold"> Experience up to 40% gas savings</span> with our optimized smart contracts.
+                    </p>
+                </div>
 
-            await writeContractAsync({
-                abi: tsenderAbi,
-                address: tSenderAddress as `0x${string}`,
-                functionName: "airdropERC20",
-                args: [
-                    tokenAddress as `0x${string}`,
-                    recipients.split(/[,\n]+/).map(addr => addr.trim()) as `0x${string}`[],
-                    amount.split(/[,\n]+/).map(amt => BigInt(parseFloat(amt.trim()))) as bigint[],
-                    BigInt(total)
-                ],
-            });
-        }else{
-            await writeContractAsync({
-                abi: tsenderAbi,
-                address: tSenderAddress as `0x${string}`,
-                functionName: "airdropERC20",
-                args: [
-                    tokenAddress as `0x${string}`,
-                    recipients.split(/[,\n]+/).map(addr => addr.trim()) as `0x${string}`[],
-                    amount.split(/[,\n]+/).map(amt => BigInt(parseFloat(amt.trim()))) as bigint[],
-                    BigInt(total)
-                ],
-            });
-        }
-    }
+                {/* Gas Comparison Dashboard */}
+                {(gasUsed.optimized || gasUsed.standard) && (
+                    <GasComparison optimizedGas={gasUsed.optimized} standardGas={gasUsed.standard} />
+                )}
 
-    return <div className="gap-y-6 flex flex-col items-center mt-5">
-        <InputForm label="Token Address" placeholder="0x" value = {tokenAddress} onChange={(e) => setTokenAddress(e.target.value)} />
-        <InputForm label="recipients" placeholder="0x59696, 088765" value = {recipients} onChange={(e) => setRecipients(e.target.value)} large={true} />
-        <InputForm label="amount" placeholder="200, 300" value = {amount} onChange={(e) => setAmount(e.target.value)} large={true} />
-        <button onClick={handleSubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-4/6">Submit</button>
-    </div>
+                {/* Tab Navigation */}
+                <div className="mb-8">
+                    <div className="flex items-center justify-center gap-4 p-2 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-2xl max-w-2xl mx-auto">
+                        <button
+                            onClick={() => setActiveTab("optimized")}
+                            className={`flex-1 relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                                activeTab === "optimized"
+                                    ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50"
+                                    : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+                            }`}
+                        >
+                            <div className="flex items-center justify-center gap-2">
+                                <span className="text-2xl">⚡</span>
+                                <div className="text-left">
+                                    <div className="text-sm font-bold">OPTIMIZED</div>
+                                    <div className="text-xs opacity-75">Huff Assembly</div>
+                                </div>
+                            </div>
+                            {activeTab === "optimized" && (
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-400 opacity-20 animate-pulse" />
+                            )}
+                        </button>
+
+                        <button
+                            onClick={() => setActiveTab("standard")}
+                            className={`flex-1 relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                                activeTab === "standard"
+                                    ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/50"
+                                    : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+                            }`}
+                        >
+                            <div className="flex items-center justify-center gap-2">
+                                <span className="text-2xl">🔥</span>
+                                <div className="text-left">
+                                    <div className="text-sm font-bold">STANDARD</div>
+                                    <div className="text-xs opacity-75">Solidity</div>
+                                </div>
+                            </div>
+                            {activeTab === "standard" && (
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-400 to-red-400 opacity-20 animate-pulse" />
+                            )}
+                        </button>
+                    </div>
+
+                    {/* Tab Description */}
+                    <div className="mt-6 max-w-2xl mx-auto">
+                        {activeTab === "optimized" ? (
+                            <div className="p-6 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl backdrop-blur-sm">
+                                <div className="flex items-start gap-3">
+                                    <div className="text-3xl">⚡</div>
+                                    <div>
+                                        <h3 className="font-bold text-cyan-300 mb-2">Optimized Version (Recommended)</h3>
+                                        <p className="text-slate-300 text-sm leading-relaxed">
+                                            Leverages Huff assembly language for bytecode-level optimization. 
+                                            Reduces gas costs by eliminating redundant operations and maximizing EVM efficiency.
+                                            <span className="text-cyan-400 font-semibold"> Perfect for high-volume airdrops.</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="p-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-xl backdrop-blur-sm">
+                                <div className="flex items-start gap-3">
+                                    <div className="text-3xl">🔥</div>
+                                    <div>
+                                        <h3 className="font-bold text-orange-300 mb-2">Standard Version</h3>
+                                        <p className="text-slate-300 text-sm leading-relaxed">
+                                            Traditional Solidity implementation for comparison. 
+                                            Uses standard ERC20 patterns with higher gas consumption.
+                                            <span className="text-orange-400 font-semibold"> Try both versions to see the difference!</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                {/* Content Area */}
+                <div className="mt-8">
+                    {activeTab === "optimized" ? (
+                        <OptimizedAirdrop onGasUsed={(gas) => setGasUsed(prev => ({ ...prev, optimized: gas }))} />
+                    ) : (
+                        <StandardAirdrop onGasUsed={(gas) => setGasUsed(prev => ({ ...prev, standard: gas }))} />
+                    )}
+                </div>
+
+                {/* Guidelines Section */}
+                <div className="mt-16 max-w-4xl mx-auto">
+                    <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                        How It Works
+                    </h2>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        <div className="p-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
+                            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📝</div>
+                            <h3 className="font-bold text-lg mb-2 text-cyan-300">1. Enter Details</h3>
+                            <p className="text-slate-400 text-sm">
+                                Provide the token address, recipient addresses (comma or newline separated), and amounts for each recipient.
+                            </p>
+                        </div>
+
+                        <div className="p-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
+                            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">✅</div>
+                            <h3 className="font-bold text-lg mb-2 text-cyan-300">2. Approve Tokens</h3>
+                            <p className="text-slate-400 text-sm">
+                                The system automatically checks allowance and requests approval if needed before executing the airdrop.
+                            </p>
+                        </div>
+
+                        <div className="p-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
+                            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
+                            <h3 className="font-bold text-lg mb-2 text-cyan-300">3. Execute Airdrop</h3>
+                            <p className="text-slate-400 text-sm">
+                                Tokens are distributed efficiently in a single transaction, saving you time and gas fees.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style jsx>{`
+                @keyframes pulse-slow {
+                    0%, 100% { opacity: 0.3; transform: scale(1); }
+                    50% { opacity: 0.5; transform: scale(1.1); }
+                }
+                @keyframes pulse-slow-delayed {
+                    0%, 100% { opacity: 0.3; transform: scale(1); }
+                    50% { opacity: 0.5; transform: scale(1.1); }
+                }
+                .animate-pulse-slow {
+                    animation: pulse-slow 8s ease-in-out infinite;
+                }
+                .animate-pulse-slow-delayed {
+                    animation: pulse-slow-delayed 8s ease-in-out infinite 2s;
+                }
+            `}</style>
+        </div>
+    );
 }
