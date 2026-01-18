@@ -23,9 +23,9 @@ export default function SendToken() {
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-                <div className="mt-16 max-w-4xl mx-auto">
-                    <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                        How It Works
+                <div className="mb-16 max-w-4xl mx-auto">
+                    <h2 className="text-3xl font-bold mb-6 flex justify-center">
+                        How it all works in 3 simple steps
                     </h2>
                     <div className="grid md:grid-cols-3 gap-6">
                         <div className="p-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
