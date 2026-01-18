@@ -28,10 +28,10 @@ export default function SendToken() {
                         How it all works in 3 simple steps
                     </h2>
                     <div className="grid md:grid-cols-3 gap-6">
-                        <div className="p-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
-                            <h3 className="font-bold text-lg mb-2 text-cyan-300">1. Enter Details</h3>
-                            <p className="text-slate-400 text-sm">
-                                Provide the token address, recipient addresses (comma or newline separated), and amounts for each recipient.
+                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236] rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
+                            <h3 className="font-bold text-lg mb-2 text-[#008236]">1. Enter Details</h3>
+                            <p className="text-black dark:text-white text-sm">
+                               Connect wallet and provide the token address, recipient addresses (comma or newline separated), and amounts for each recipient.
                             </p>
                         </div>
 
