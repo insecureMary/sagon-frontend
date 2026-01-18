@@ -80,12 +80,10 @@ export default function SendToken() {
                         </button>
                     </div>
 
-                    {/* Tab Description */}
                     <div className="mt-6 max-w-2xl mx-auto">
                         {activeTab === "optimized" ? (
                             <div className="p-6 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl backdrop-blur-sm">
                                 <div className="flex items-start gap-3">
-                                    <div className="text-3xl">⚡</div>
                                     <div>
                                         <h3 className="font-bold text-cyan-300 mb-2">Optimized Version (Recommended)</h3>
                                         <p className="text-slate-300 text-sm leading-relaxed">
@@ -99,7 +97,6 @@ export default function SendToken() {
                         ) : (
                             <div className="p-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-xl backdrop-blur-sm">
                                 <div className="flex items-start gap-3">
-                                    <div className="text-3xl">🔥</div>
                                     <div>
                                         <h3 className="font-bold text-orange-300 mb-2">Standard Version</h3>
                                         <p className="text-slate-300 text-sm leading-relaxed">
