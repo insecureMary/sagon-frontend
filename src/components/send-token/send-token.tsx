@@ -28,7 +28,7 @@ export default function SendToken() {
                         How it all works in 3 simple steps
                     </h2>
                     <div className="grid md:grid-cols-3 gap-6">
-                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236] rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
+                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50 transition-all duration-300 group">
                             <h3 className="font-bold text-lg mb-2 text-[#008236]">1. Enter Details</h3>
                             <p className="text-black dark:text-white text-sm">
                                Connect wallet and provide the token address, recipient addresses (comma or newline separated), and amounts for each recipient.
