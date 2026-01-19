@@ -72,7 +72,7 @@ export default function SendToken() {
                                 </div>
                             </div>
                             {activeTab === "optimized" && (
-                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-lime-400 to-green-400 opacity-20 animate-pulse" />
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-lime-400 to-green-400 opacity-20" />
                             )}
                         </button>
 
