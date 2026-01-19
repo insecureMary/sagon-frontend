@@ -61,7 +61,7 @@ export default function SendToken() {
                             onClick={() => setActiveTab("optimized")}
                             className={`flex-1 relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                                 activeTab === "optimized"
-                                    ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50"
+                                    ? "bg-gradient-to-r from-lime-700 to-green-570 text-white shadow-lg shadow-green-500/50"
                                     : "text-slate-400 hover:text-white hover:bg-slate-800/50"
                             }`}
                         >
@@ -72,7 +72,7 @@ export default function SendToken() {
                                 </div>
                             </div>
                             {activeTab === "optimized" && (
-                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-400 opacity-20 animate-pulse" />
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-lime-400 to-green-400 opacity-20 animate-pulse" />
                             )}
                         </button>
 
@@ -98,7 +98,7 @@ export default function SendToken() {
 
                     <div className="mt-6 max-w-2xl mx-auto">
                         {activeTab === "optimized" ? (
-                            <div className="p-6 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl backdrop-blur-sm">
+                            <div className="p-6 bg-gradient-to-r from-lime-500/10 to-green-500/10 border border-cyan-500/30 rounded-xl backdrop-blur-sm">
                                 <div className="flex items-start gap-3">
                                     <div>
                                         <h3 className="font-bold text-cyan-300 mb-2">Optimized Version (Recommended)</h3>
