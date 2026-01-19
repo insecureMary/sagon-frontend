@@ -34,20 +34,19 @@ export default function SendToken() {
                                Connect wallet and provide the token address, recipient addresses (comma or newline separated), and amounts for each recipient.
                             </p>
                         </div>
-
-                        <div className="p-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
-                            <h3 className="font-bold text-lg mb-2 text-cyan-300">2. Approve Tokens</h3>
-                            <p className="text-slate-400 text-sm">
+                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50 transition-all duration-300 group">
+                            <h3 className="font-bold text-lg mb-2 text-[#008236]">2. Approve Tokens</h3>
+                            <p className="text-black dark:text-white text-sm">
                                 The system automatically checks allowance and requests approval if needed before executing the airdrop.
                             </p>
                         </div>
-
-                        <div className="p-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all duration-300 group">
-                            <h3 className="font-bold text-lg mb-2 text-cyan-300">3. Execute Airdrop</h3>
-                            <p className="text-slate-400 text-sm">
+                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50 transition-all duration-300 group">
+                            <h3 className="font-bold text-lg mb-2 text-[#008236]">3. Execute Airdrop</h3>
+                            <p className="text-black dark:text-white text-sm">
                                 Tokens are distributed efficiently in a single transaction, saving you time and gas fees.
                             </p>
                         </div>
+
                     </div>
                 </div>
 
