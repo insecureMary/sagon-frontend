@@ -7,12 +7,10 @@ const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur-sm">
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
         <div className="text-2xl font-bold text-white">
           Sagon
         </div>
 
-        {/* Center Links */}
         <div className="hidden md:flex items-center gap-8">
           <Link
             href="/about"
@@ -28,7 +26,7 @@ const Header: React.FC = () => {
           </Link>
         </div>
 
-        <Link href="/sender" className="px-6 py-2.5 rounded-lg font-semibold text-white bg-[#008236] hover:opacity-90 transition-opacity duration-200">
+        <Link href="/send-token" className="px-6 py-2.5 rounded-lg font-semibold text-white bg-[#008236] hover:opacity-90 transition-opacity duration-200">
           Send Token
         </Link>
       </nav>
