@@ -17,13 +17,13 @@ function RainbowKitWrapper({ children }: { children: ReactNode }) {
       coolMode 
       modalSize="compact" 
       theme={resolvedTheme === 'dark' ? darkTheme({
-        accentColor: '#3B33B1',
+        accentColor: '#008236',
         accentColorForeground: 'white',
         borderRadius: 'large',
         fontStack: 'system',
         overlayBlur: 'small',
       }) : lightTheme({
-        accentColor: '#3B33B1',
+        accentColor: '#008236',
         accentColorForeground: 'white',
         borderRadius: 'large',
         fontStack: 'system',
