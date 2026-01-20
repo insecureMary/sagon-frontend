@@ -56,7 +56,7 @@ export default function SendToken() {
 
 
                 <div className="mb-8">
-                    <div className="flex items-center justify-center gap-4 p-2 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-2xl max-w-2xl mx-auto">
+                    <div className="flex items-center justify-center gap-4 p-2 bg-black backdrop-blur-xl  rounded-2xl max-w-2xl mx-auto">
                         <button
                             onClick={() => setActiveTab("optimized")}
                             className={`flex-1 relative px-8 py-4 rounded-xl font-semibold duration-700 cursor-pointer ${
@@ -96,7 +96,7 @@ export default function SendToken() {
                         </button>
                     </div>
 
-                    <div className="mt-6 max-w-2xl mx-auto">
+                    {/* <div className="mt-6 max-w-2xl mx-auto">
                         {activeTab === "optimized" ? (
                             <div className="p-6 bg-gradient-to-r from-lime-500/10 to-green-500/10 border border-green-500/30 rounded-xl backdrop-blur-sm">
                                 <div className="flex items-start gap-3">
@@ -124,7 +124,7 @@ export default function SendToken() {
                                 </div>
                             </div>
                         )}
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="mt-8">
