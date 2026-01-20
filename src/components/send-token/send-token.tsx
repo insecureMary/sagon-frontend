@@ -98,14 +98,14 @@ export default function SendToken() {
 
                     <div className="mt-6 max-w-2xl mx-auto">
                         {activeTab === "optimized" ? (
-                            <div className="p-6 bg-gradient-to-r from-lime-500/10 to-green-500/10 border border-cyan-500/30 rounded-xl backdrop-blur-sm">
+                            <div className="p-6 bg-gradient-to-r from-lime-500/10 to-green-500/10 border border-green-500/30 rounded-xl backdrop-blur-sm">
                                 <div className="flex items-start gap-3">
                                     <div>
                                         <h3 className="font-bold text-green-300 mb-2">Optimized Version (Recommended)</h3>
                                         <p className="text-slate-300 text-sm leading-relaxed">
                                             Leverages Huff assembly language for bytecode-level optimization. 
                                             Reduces gas costs by eliminating redundant operations and maximizing EVM efficiency.
-                                            <span className="text-cyan-400 font-semibold"> Perfect for high-volume airdrops.</span>
+                                            <span className="text-green-400 font-semibold"> Perfect for high-volume airdrops.</span>
                                         </p>
                                     </div>
                                 </div>
