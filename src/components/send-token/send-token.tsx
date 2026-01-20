@@ -59,13 +59,13 @@ export default function SendToken() {
                     <div className="flex items-center justify-center gap-4 p-2 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-2xl max-w-2xl mx-auto">
                         <button
                             onClick={() => setActiveTab("optimized")}
-                            className={`flex-1 relative px-8 py-4 rounded-xl font-semibold duration-700 ${
+                            className={`flex-1 relative px-8 py-4 rounded-xl font-semibold duration-700 cursor-pointer ${
                                 activeTab === "optimized"
-                                    ? "bg-gradient-to-r from-lime-800 to-green-800 text-white shadow-lg shadow-green-500/50"
+                                    ? "bg-gradient-to-r from-lime-800 to-green-800 text-white shadow-sm shadow-green-500/50"
                                     : "text-slate-400 hover:text-white hover:bg-slate-800/50"
                             }`}
                         >
-                            <div className="flex items-center justify-center gap-2">
+                            <div className="flex items-center justify-center gap-2 ">
                                 <div className="text-left">
                                     <div className="text-sm font-bold">OPTIMIZED</div>
                                     <div className="text-xs opacity-75">Huff Assembly</div>
@@ -78,9 +78,9 @@ export default function SendToken() {
 
                         <button
                             onClick={() => setActiveTab("standard")}
-                            className={`flex-1 relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                            className={`flex-1 relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
                                 activeTab === "standard"
-                                    ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/50"
+                                    ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-sm shadow-orange-500/50"
                                     : "text-slate-400 hover:text-white hover:bg-slate-800/50"
                             }`}
                         >
