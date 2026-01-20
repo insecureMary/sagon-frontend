@@ -9,7 +9,7 @@ export interface InputFormProps {
 
 export default function InputForm({ label, placeholder, value, type, large, onChange }: InputFormProps) {
     return (
-        <div className="flex flex-col gap-1.5 w-4/6 justify-self-center">
+        <div className="flex flex-col gap-1.5 w-1/1 justify-self-center">
             <label className="text-zinc-600 font-medium text-sm">{label}</label>
             {large ? (
                 <textarea

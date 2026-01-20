@@ -171,8 +171,8 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
     };
 
     return (
-        <div className="max-w-3xl mx-auto">
-            <div className="bg-slate-900/50 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-8 shadow-2xl">
+        <div className="max-w-4xl mx-auto">
+            <div className=" backdrop-blur-xl border  rounded-2xl p-8 shadow-2xl">
                 {/* <div className="flex items-center justify-center mb-8">
                     <div className="px-6 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 rounded-full">
                         <span className="text-cyan-300 font-bold text-sm">⚡ OPTIMIZED MODE - HUFF ASSEMBLY</span>
@@ -203,20 +203,19 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
                         large={true} 
                     />
 
-                    {/* Validation Feedback */}
+
                     {validationError && (
                         <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-                            <p className="text-red-400 text-sm">⚠️ {validationError}</p>
+                            <p className="text-red-400 text-sm">{validationError}</p>
                         </div>
                     )}
 
-                    {/* Summary */}
                     {isValid && (
-                        <div className="p-6 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl">
+                        <div className="p-6 bg-gradient-to-r from-green-500/10 to-green-500/10 border border-green-500/30 rounded-xl">
                             <div className="grid grid-cols-2 gap-4 text-sm">
                                 <div>
-                                    <span className="text-slate-400">Recipients:</span>
-                                    <span className="text-cyan-300 font-bold ml-2">{recipientArray.length}</span>
+                                    <span className="text-black-400">Recipients:</span>
+                                    <span className="text-green-300 font-bold ml-2">{recipientArray.length}</span>
                                 </div>
                                 <div>
                                     <span className="text-slate-400">Total Amount:</span>
@@ -226,18 +225,16 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
                         </div>
                     )}
 
-                    {/* Submit Button */}
+
                     <button 
                         onClick={handleSubmit} 
                         disabled={!isValid || step === "checking" || step === "approving" || step === "airdropping"}
                         className={getButtonClass()}
                     >
-                        {/* Animated background */}
                         {(step === "idle" || step === "error") && isValid && (
                             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                         )}
                         
-                        {/* Loading spinner */}
                         {(step === "checking" || step === "approving" || step === "airdropping") && (
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <div className="w-6 h-6 border-3 border-slate-400 border-t-cyan-400 rounded-full animate-spin" />
@@ -251,7 +248,7 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
                         </span>
                     </button>
 
-                    {/* Transaction Hash */}
+
                     {txHash && step === "success" && (
                         <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
                             <p className="text-green-400 text-sm">
