@@ -156,7 +156,7 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
     };
 
     const getButtonClass = () => {
-        const base = "relative w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 overflow-hidden group";
+        const base = "relative w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 overflow-hidden group cursor-pointer";
         
         if (!isValid || step === "checking" || step === "approving" || step === "airdropping") {
             return `${base} bg-slate-700 text-slate-400 cursor-not-allowed`;
@@ -170,7 +170,7 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
             return `${base} bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg shadow-red-500/50`;
         }
 
-        return `${base} bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-400 hover:to-red-400 shadow-lg shadow-orange-500/50 hover:shadow-orange-400/60`;
+        return `${base} bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-400 hover:to-red-400 hover:shadow-orange-400/60`;
     };
 
     return (
@@ -222,18 +222,16 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                         </div>
                     )}
 
-                    {/* Submit Button */}
+
                     <button 
                         onClick={handleSubmit} 
                         disabled={!isValid || step === "checking" || step === "approving" || step === "airdropping"}
                         className={getButtonClass()}
                     >
-                        {/* Animated background */}
                         {(step === "idle" || step === "error") && isValid && (
-                            <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-400 opacity-0 transition-opacity duration-300" />
                         )}
                         
-                        {/* Loading spinner */}
                         {(step === "checking" || step === "approving" || step === "airdropping") && (
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <div className="w-6 h-6 border-3 border-slate-400 border-t-orange-400 rounded-full animate-spin" />
@@ -247,7 +245,7 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                         </span>
                     </button>
 
-                    {/* Transaction Hash */}
+
                     {txHash && step === "success" && (
                         <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
                             <p className="text-green-400 text-sm">
