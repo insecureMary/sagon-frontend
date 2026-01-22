@@ -153,21 +153,21 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
     };
 
     const getButtonClass = () => {
-        const base = "relative w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 overflow-hidden group";
+        const base = "relative w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 overflow-hidden group cursor-pointer";
         
         if (!isValid || step === "checking" || step === "approving" || step === "airdropping") {
             return `${base} bg-slate-700 text-slate-400 cursor-not-allowed`;
         }
         
         if (step === "success") {
-            return `${base} bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/50`;
+            return `${base} bg-gradient-to-r from-green-500 to-emerald-500 text-white -lg `;
         }
         
         if (step === "error") {
             return `${base} bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg shadow-red-500/50`;
         }
 
-        return `${base} bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-400/60`;
+        return `${base} bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-400 hover:to-emerald-400`;
     };
 
     return (
