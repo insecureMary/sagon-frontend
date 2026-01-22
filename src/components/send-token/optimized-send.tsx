@@ -173,11 +173,6 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
     return (
         <div className="max-w-4xl mx-auto">
             <div className=" backdrop-blur-xl border  rounded-2xl p-8 shadow-2xl">
-                {/* <div className="flex items-center justify-center mb-8">
-                    <div className="px-6 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 rounded-full">
-                        <span className="text-cyan-300 font-bold text-sm">⚡ OPTIMIZED MODE - HUFF ASSEMBLY</span>
-                    </div>
-                </div> */}
 
                 <div className="space-y-6">
                     <InputForm 
