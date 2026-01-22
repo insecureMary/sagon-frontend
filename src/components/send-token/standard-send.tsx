@@ -176,12 +176,6 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
     return (
         <div className="max-w-3xl mx-auto">
             <div className="bg-slate-900/50 backdrop-blur-xl border border-orange-500/30 rounded-2xl p-8 shadow-2xl">
-                {/* Standard Badge */}
-                <div className="flex items-center justify-center mb-8">
-                    <div className="px-6 py-2 bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/50 rounded-full">
-                        <span className="text-orange-300 font-bold text-sm">🔥 STANDARD MODE - SOLIDITY</span>
-                    </div>
-                </div>
 
                 <div className="space-y-6">
                     <InputForm 
@@ -207,14 +201,12 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                         large={true} 
                     />
 
-                    {/* Validation Feedback */}
                     {validationError && (
                         <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
                             <p className="text-red-400 text-sm">{validationError}</p>
                         </div>
                     )}
 
-                    {/* Summary */}
                     {isValid && (
                         <div className="p-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-xl">
                             <div className="grid grid-cols-2 gap-4 text-sm">
