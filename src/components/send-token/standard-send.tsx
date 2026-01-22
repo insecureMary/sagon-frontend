@@ -210,7 +210,7 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                     {/* Validation Feedback */}
                     {validationError && (
                         <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-                            <p className="text-red-400 text-sm">⚠️ {validationError}</p>
+                            <p className="text-red-400 text-sm">{validationError}</p>
                         </div>
                     )}
 
