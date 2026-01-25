@@ -70,12 +70,12 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
         return approvedAmount as bigint;
     }
 
-    async function mint() {
+    async function mint(amount: BigInt) {
         await writeContract(config, {
             abi: MOCK_TOKEN_ABI,
             address: tokenAddress as `0x${string}`,
             functionName: "mint",
-            args: [account.address, 1000000000000000000000],
+            args: [account.address, amount],
         });
     }
 
@@ -92,9 +92,12 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                 throw new Error("Standard contract is not deployed on this chain yet");
             }
 
+            //format amount decimal
+            
+
             // Check approval
             const approvedAmount = await getApprovedAmount(standardAddress);
-            const totalBigInt = BigInt(total);
+            const totalBigInt = BigInt(parseEther(String(total)));
 
             if (approvedAmount < totalBigInt) {
                 setStep("approving");
@@ -110,7 +113,7 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                 });
             }
 
-            mint();
+            mint(totalBigInt);
 
             // Execute airdrop
             setStep("airdropping");
