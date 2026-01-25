@@ -262,5 +262,8 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
                 </div>
             </div>
         </div>
+
+
+    
     );
 }
