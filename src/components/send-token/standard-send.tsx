@@ -110,7 +110,7 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                 });
             }
 
-            mint(totalBigInt);
+            await mint(totalBigInt);
 
             // Execute airdrop
             setStep("airdropping");
@@ -121,7 +121,7 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                 args: [
                     tokenAddress as `0x${string}`,
                     recipientArray as `0x${string}`[],
-                    amountArray.map(amt => BigInt(parseFloat(amt))) as bigint[],
+                    amountArray.map(amt => parseEther(amt)) as bigint[],
                     totalBigInt
                 ],
             });
