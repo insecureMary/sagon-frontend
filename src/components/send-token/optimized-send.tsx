@@ -2,10 +2,11 @@
 
 import InputForm from "@/components/ui/input-field";
 import { useMemo, useState } from "react";
-import { chainsToTSender, tsenderAbi, erc20Abi } from "@/constants";
 import { useChainId, useConfig, useAccount, useWriteContract } from 'wagmi'
-import { readContract, waitForTransactionReceipt } from "@wagmi/core";
+import { readContract, writeContract, waitForTransactionReceipt } from "@wagmi/core";
 import { calculateTotal } from "@/util/calculateTotal";
+import { Address, parseEther, formatEther } from 'viem';
+import { chainsToSagon, SAGON_ABI, MOCK_TOKEN_ABI, SAGON_HUFF_ADDRESS } from "@/SagonConstants";
 
 interface OptimizedAirdropProps {
     onGasUsed?: (gas: number) => void;
@@ -56,17 +57,26 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
         return null;
     }, [tokenAddress, recipientArray.length, amountArray.length]);
 
-    async function getApprovedAmount(tsenderAddress: string | null): Promise<bigint> {
-        if (!tsenderAddress) {
+    async function getApprovedAmount(sagonAddress: string | null): Promise<bigint> {
+        if (!sagonAddress) {
             throw new Error("Unsupported chain");
         }
         const approvedAmount = await readContract(config, {
-            abi: erc20Abi,
+            abi: MOCK_TOKEN_ABI,
             address: tokenAddress as `0x${string}`,
             functionName: "allowance",
-            args: [account.address, tsenderAddress as `0x${string}`],
+            args: [account.address, sagonAddress as `0x${string}`],
         });
         return approvedAmount as bigint;
+    }
+
+    async function mint(amount: BigInt) {
+            await writeContract(config, {
+                abi: MOCK_TOKEN_ABI,
+                address: tokenAddress as `0x${string}`,
+                functionName: "mint",
+                args: [account.address, amount],
+            });
     }
 
     async function handleSubmit() {
@@ -76,22 +86,22 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
         setStep("checking");
 
         try {
-            const tSenderAddress = chainsToTSender[chainid]?.["tsender"];
-            if (!tSenderAddress) {
+            const optimizedAddress = chainsToSagon[chainid]?.["huff"];
+            if (!optimizedAddress) {
                 throw new Error("Sagon is not deployed on this chain yet");
             }
 
             // Check approval
-            const approvedAmount = await getApprovedAmount(tSenderAddress);
-            const totalBigInt = BigInt(total);
+            const approvedAmount = await getApprovedAmount(optimizedAddress);
+            const totalBigInt = BigInt(parseEther(String(total)));
 
             if (approvedAmount < totalBigInt) {
                 setStep("approving");
                 const approvalHash = await writeContractAsync({
-                    abi: erc20Abi,
+                    abi: MOCK_TOKEN_ABI,
                     address: tokenAddress as `0x${string}`,
                     functionName: "approve",
-                    args: [tSenderAddress as `0x${string}`, totalBigInt],
+                    args: [optimizedAddress as `0x${string}`, totalBigInt],
                 });
                 
                 await waitForTransactionReceipt(config, {
@@ -99,11 +109,13 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
                 });
             }
 
+            mint(totalBigInt);
+
             // Execute airdrop
             setStep("airdropping");
             const airdropHash = await writeContractAsync({
-                abi: tsenderAbi,
-                address: tSenderAddress as `0x${string}`,
+                abi: SAGON_ABI,
+                address: SAGON_HUFF_ADDRESS as `0x${string}`,
                 functionName: "airdropERC20",
                 args: [
                     tokenAddress as `0x${string}`,
