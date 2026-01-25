@@ -92,9 +92,6 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                 throw new Error("Standard contract is not deployed on this chain yet");
             }
 
-            //format amount decimal
-            
-
             // Check approval
             const approvedAmount = await getApprovedAmount(standardAddress);
             const totalBigInt = BigInt(parseEther(String(total)));
