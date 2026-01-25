@@ -2,10 +2,11 @@
 
 import InputForm from "@/components/ui/input-field";
 import { useMemo, useState } from "react";
-import { chainsToTSender, tsenderAbi, erc20Abi } from "@/constants";
+import { chainsToSagon, SAGON_ABI, MOCK_TOKEN_ABI } from "@/SagonConstants";
 import { useChainId, useConfig, useAccount, useWriteContract } from 'wagmi'
-import { readContract, waitForTransactionReceipt } from "@wagmi/core";
+import { readContract, writeContract, waitForTransactionReceipt } from "@wagmi/core";
 import { calculateTotal } from "@/util/calculateTotal";
+import { Address, parseEther, formatEther } from 'viem';
 
 interface StandardAirdropProps {
     onGasUsed?: (gas: number) => void;
@@ -56,17 +57,26 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
         return null;
     }, [tokenAddress, recipientArray.length, amountArray.length]);
 
-    async function getApprovedAmount(tsenderAddress: string | null): Promise<bigint> {
-        if (!tsenderAddress) {
+    async function getApprovedAmount(sagonAddress: string | null): Promise<bigint> {
+        if (!sagonAddress) {
             throw new Error("Unsupported chain");
         }
         const approvedAmount = await readContract(config, {
-            abi: erc20Abi,
+            abi: MOCK_TOKEN_ABI,
             address: tokenAddress as `0x${string}`,
             functionName: "allowance",
-            args: [account.address, tsenderAddress as `0x${string}`],
+            args: [account.address, sagonAddress as `0x${string}`],
         });
         return approvedAmount as bigint;
+    }
+
+    async function mint() {
+        await writeContract(config, {
+            abi: MOCK_TOKEN_ABI,
+            address: tokenAddress as `0x${string}`,
+            functionName: "mint",
+            args: [account.address, 1000000000000000000000],
+        });
     }
 
     async function handleSubmit() {
@@ -76,9 +86,7 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
         setStep("checking");
 
         try {
-            // For standard version, we'll use the standard contract address
-            // You would replace this with your actual standard Solidity contract address
-            const standardAddress = chainsToTSender[chainid]?.["tsender"];
+            const standardAddress = chainsToSagon[chainid]?.["solidity"];
             
             if (!standardAddress) {
                 throw new Error("Standard contract is not deployed on this chain yet");
@@ -91,7 +99,7 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
             if (approvedAmount < totalBigInt) {
                 setStep("approving");
                 const approvalHash = await writeContractAsync({
-                    abi: erc20Abi,
+                    abi: MOCK_TOKEN_ABI,
                     address: tokenAddress as `0x${string}`,
                     functionName: "approve",
                     args: [standardAddress as `0x${string}`, totalBigInt],
@@ -102,12 +110,14 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                 });
             }
 
+            mint();
+
             // Execute airdrop
             setStep("airdropping");
             const airdropHash = await writeContractAsync({
-                abi: tsenderAbi, // Would be standardAbi in production
+                abi: SAGON_ABI, 
                 address: standardAddress as `0x${string}`,
-                functionName: "airdropERC20",
+                functionName: "sendBatchToken",
                 args: [
                     tokenAddress as `0x${string}`,
                     recipientArray as `0x${string}`[],
