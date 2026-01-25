@@ -12,7 +12,7 @@ interface OptimizedAirdropProps {
     onGasUsed?: (gas: number) => void;
 }
 
-type TransactionStep = "idle" | "checking" | "approving" | "airdropping" | "success" | "error";
+type TransactionStep = "idle" | "checking" | "approving" | "sending" | "success" | "error";
 
 export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
     const [tokenAddress, setTokenAddress] = useState("")
@@ -109,18 +109,18 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
                 });
             }
 
-            mint(totalBigInt);
+            await mint(totalBigInt);
 
             // Execute airdrop
-            setStep("airdropping");
+            setStep("sending");
             const airdropHash = await writeContractAsync({
                 abi: SAGON_ABI,
                 address: SAGON_HUFF_ADDRESS as `0x${string}`,
-                functionName: "airdropERC20",
+                functionName: "sendBatchToken",
                 args: [
                     tokenAddress as `0x${string}`,
                     recipientArray as `0x${string}`[],
-                    amountArray.map(amt => BigInt(parseFloat(amt))) as bigint[],
+                    amountArray.map(amt => parseEther(amt)) as bigint[],
                     totalBigInt
                 ],
             });
@@ -157,7 +157,7 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
         switch (step) {
             case "checking": return "Checking token approval...";
             case "approving": return "Awaiting approval confirmation...";
-            case "airdropping": return "Executing airdrop...";
+            case "sending": return "Executing airdrop...";
             case "success": return "Airdrop successful!";
             case "error": return error || "Transaction failed";
             default: return "Execute Airdrop";
@@ -167,7 +167,7 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
     const getButtonClass = () => {
         const base = "relative w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 overflow-hidden group cursor-pointer";
         
-        if (!isValid || step === "checking" || step === "approving" || step === "airdropping") {
+        if (!isValid || step === "checking" || step === "approving" || step === "sending") {
             return `${base} bg-slate-700 text-slate-400 cursor-not-allowed`;
         }
         
@@ -235,14 +235,14 @@ export default function OptimizedAirdrop({ onGasUsed }: OptimizedAirdropProps) {
 
                     <button 
                         onClick={handleSubmit} 
-                        disabled={!isValid || step === "checking" || step === "approving" || step === "airdropping"}
+                        disabled={!isValid || step === "checking" || step === "approving" || step === "sending"}
                         className={getButtonClass()}
                     >
                         {(step === "idle" || step === "error") && isValid && (
                             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                         )}
                         
-                        {(step === "checking" || step === "approving" || step === "airdropping") && (
+                        {(step === "checking" || step === "approving" || step === "sending") && (
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <div className="w-6 h-6 border-3 border-slate-400 border-t-cyan-400 rounded-full animate-spin" />
                             </div>
