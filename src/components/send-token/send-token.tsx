@@ -43,16 +43,18 @@ export default function SendToken() {
                         <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50 transition-all duration-300 group">
                             <h3 className="font-bold text-lg mb-2 text-[#008236]">3. Execute Airdrop</h3>
                             <p className="text-black dark:text-white text-sm">
-                                Tokens are distributed efficiently in a single transaction, saving you time and gas fees.
+                                Tokens are distributed in a single transaction, saving you time and gas fees.
                             </p>
                         </div>
 
                     </div>
                 </div>
 
-                {(gasUsed.optimized || gasUsed.standard) && (
+                {/* {(gasUsed.optimized || gasUsed.standard) && (
                     <GasComparison optimizedGas={gasUsed.optimized} standardGas={gasUsed.standard} />
-                )}
+                )} */}
+                <GasComparison optimizedGas={gasUsed.optimized} standardGas={gasUsed.standard} />
+                
 
 
                 <div className="mb-8">
@@ -95,36 +97,6 @@ export default function SendToken() {
                             )}
                         </button>
                     </div>
-
-                    {/* <div className="mt-6 max-w-2xl mx-auto">
-                        {activeTab === "optimized" ? (
-                            <div className="p-6 bg-gradient-to-r from-lime-500/10 to-green-500/10 border border-green-500/30 rounded-xl backdrop-blur-sm">
-                                <div className="flex items-start gap-3">
-                                    <div>
-                                        <h3 className="font-bold text-green-300 mb-2">Optimized Version (Recommended)</h3>
-                                        <p className="text-slate-300 text-sm leading-relaxed">
-                                            Leverages Huff assembly language for bytecode-level optimization. 
-                                            Reduces gas costs by eliminating redundant operations and maximizing EVM efficiency.
-                                            <span className="text-green-400 font-semibold"> Perfect for high-volume airdrops.</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="p-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-xl backdrop-blur-sm">
-                                <div className="flex items-start gap-3">
-                                    <div>
-                                        <h3 className="font-bold text-orange-300 mb-2">Standard Version</h3>
-                                        <p className="text-slate-300 text-sm leading-relaxed">
-                                            Traditional Solidity implementation for comparison. 
-                                            Uses standard ERC20 patterns with higher gas consumption.
-                                            <span className="text-orange-400 font-semibold"> Try both versions to see the difference!</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div> */}
                 </div>
 
                 <div className="mt-8">

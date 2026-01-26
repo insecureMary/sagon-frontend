@@ -67,13 +67,12 @@ export default function GasComparison({ optimizedGas, standardGas }: GasComparis
 
     return (
         <div className="mb-12 max-w-5xl mx-auto">
-            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-8 shadow-2xl">
-                <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                    ⚡ Gas Metrics
+            <div className="bg-white backdrop-blur-xl border border-green-500/30 rounded-2xl p-8 shadow-xl">
+                <h2 className="text-3xl font-bold text-center mb-8 text-[#008236]">
+                    Gas Metrics
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
-                    {/* Optimized Gas */}
                     <div className="relative overflow-hidden bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl p-6">
                         <div className="absolute top-0 right-0 text-8xl opacity-5">⚡</div>
                         <div className="relative z-10">
