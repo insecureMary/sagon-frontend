@@ -16,31 +16,27 @@ export default function SendToken() {
 
     return (
         <div className="min-h-screen bg-white dark:bg-black">
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-radial from-blue-500/10 via-transparent to-transparent animate-pulse-slow" />
-                <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-radial from-cyan-500/10 via-transparent to-transparent animate-pulse-slow-delayed" />
-            </div>
 
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-6">
 
                 <div className="mb-16 max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold mb-6 flex justify-center">
+                    <h2 className="text-3xl font-bold mb-6 flex justify-center sm:text-xl text-center">
                         How it all works in 3 simple steps
                     </h2>
                     <div className="grid md:grid-cols-3 gap-6">
-                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50 transition-all duration-300 group">
+                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50">
                             <h3 className="font-bold text-lg mb-2 text-[#008236]">1. Enter Details</h3>
                             <p className="text-black dark:text-white text-sm">
                                Connect wallet and provide the token address, recipient addresses (comma or newline separated), and amounts for each recipient.
                             </p>
                         </div>
-                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50 transition-all duration-300 group">
+                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50">
                             <h3 className="font-bold text-lg mb-2 text-[#008236]">2. Approve Tokens</h3>
                             <p className="text-black dark:text-white text-sm">
                                 The system automatically checks allowance and requests approval if needed before executing the airdrop.
                             </p>
                         </div>
-                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50 transition-all duration-300 group">
+                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50">
                             <h3 className="font-bold text-lg mb-2 text-[#008236]">3. Execute Airdrop</h3>
                             <p className="text-black dark:text-white text-sm">
                                 Tokens are distributed in a single transaction, saving you time and gas fees.

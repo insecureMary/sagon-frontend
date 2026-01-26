@@ -82,7 +82,7 @@ export default function GasComparison({ optimizedGas, standardGas }: GasComparis
                             <div className="text-slate-400 text-xs">gas units</div>
                             
                             {optimizedGas && (
-                                <div className="mt-4 h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div className="mt-4 h-2 bg-gray-300 rounded-full overflow-hidden">
                                     <div 
                                         className="h-full bg-gradient-to-r from-green-500 to-lime-500 transition-all duration-1000 ease-out"
                                         style={{ width: `${optimizedGas && standardGas ? (optimizedGas / standardGas * 100) : 100}%` }}
@@ -160,7 +160,7 @@ export default function GasComparison({ optimizedGas, standardGas }: GasComparis
                     <div className="space-y-3 sm:space-y-4">
                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
                             <div className="w-full sm:w-32 text-xs sm:text-sm text-green-400 font-semibold">Optimized</div>
-                            <div className="w-full sm:flex-1 h-10 sm:h-12 bg-slate-800 rounded-lg overflow-hidden relative">
+                            <div className="w-full sm:flex-1 h-10 sm:h-12 bg-gray-300 rounded-lg overflow-hidden relative">
                                 <div 
                                     className="h-full bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-1000 ease-out flex items-center justify-end pr-2 sm:pr-4"
                                     style={{ width: `${(optimizedGas / Math.max(optimizedGas, standardGas) * 100)}%` }}
