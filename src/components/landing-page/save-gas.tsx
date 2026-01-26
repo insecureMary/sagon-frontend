@@ -4,7 +4,7 @@ import React from 'react';
 
 const SaveGas: React.FC = () => {
   return (
-    <section className="relative md:min-h-screen py-30 md:py-0 bg-black overflow-hidden ">
+    <section className="relative md:min-h-screen py-20 md:py-0 bg-black overflow-hidden ">
   <div className="absolute inset-0 pointer-events-none">
         {[...Array(25)].map((_, i) => (
           <div
