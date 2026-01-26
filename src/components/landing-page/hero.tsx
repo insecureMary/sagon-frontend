@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 py-4 relative z-10 min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6 py-4 relative z-10 lg:min-h-screen">
         <div className="flex items-center justify-center sm:justify-start py-16">
           <div className="max-w-6xl w-full">
             <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 border-2 border-[#008236] rounded-full">
