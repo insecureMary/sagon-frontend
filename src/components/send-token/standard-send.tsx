@@ -185,7 +185,7 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
 
     return (
         <div className="max-w-3xl mx-auto">
-            <div className=" backdrop-blur-xl  rounded-2xl p-8 shadow-2xl">
+            <div className=" backdrop-blur-xl  rounded-2xl p-3 lg:p-8 shadow-2xl">
 
                 <div className="space-y-6">
                     <InputForm 
