@@ -4,17 +4,17 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-screen bg-black overflow-hidden">
+    <section className="relative lg:min-h-screen bg-black overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(25)].map((_, i) => (
           <div
             key={i}
-            className="snowflake absolute text-white opacity-60"
+            className={`snowflake absolute text-white opacity-30 lg:opacity-60 ${i >= 10 ? 'hidden sm:block' : ''}`}
             style={{
               left: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 0}s`,
               animationDuration: `${10 + Math.random() * 10}s`,
-              fontSize: `${10 + Math.random() * 5}px`,
+              fontSize: `${8 + Math.random() * 3}px`,
             }}
           >
             ❄
@@ -31,13 +31,12 @@ const Hero: React.FC = () => {
               </span>
             </div>
 
-            <h1 className="text-[32px] sm:text-[48px] md:text-[66px] lg:text-[96px] font-bold text-white leading-tight mb-6">
+            <h1 className="text-[40px] sm:text-[48px] md:text-[66px] lg:text-[96px] font-bold text-white leading-tight mb-6">
               The cheapest <br />transaction you will do <br />without using any ether
             </h1>
           </div>
 
-          {/* Lottie Animation - Hidden on mobile, visible on md+ screens */}
-          <div className="hidden md:block absolute bottom-8 right-10 w-48 h-48 lg:w-64 lg:h-64">
+          <div className=" absolute bottom-8 right-10 w-48 h-48 lg:w-64 lg:h-64">
             <div id="lottie-animation" className="w-full h-full">
               <div className="w-full h-full bg-gradient-to-br from-[#2CEDB1]/20 to-[#29BEE7]/20 rounded-full animate-pulse" />
             </div>
