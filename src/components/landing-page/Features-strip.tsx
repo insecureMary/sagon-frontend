@@ -4,24 +4,24 @@ import React from 'react';
 
 const FeaturesStrip: React.FC = () => {
   const features = [
-    "save 40% more gas",
+    "save 60% more gas",
     "use tokens to send tokens",
-    "save 40% more gas",
+    "save 60% more gas",
     "use tokens to send tokens",
   ];
 
   return (
-    <section className="relative bg-black py-40 border-t border-gray-900 overflow-hidden h-screen">
+    <section className="relative bg-black py-40 overflow-hidden h-screen">
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(50)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <div
             key={i}
-            className="snowflake absolute text-white opacity-70"
+            className={`snowflake absolute text-white opacity-30 lg:opacity-60 ${i >= 10 ? 'hidden sm:block' : ''}`}
             style={{
               left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 2}s`,
+              animationDelay: `${Math.random() * 0}s`,
               animationDuration: `${10 + Math.random() * 10}s`,
-              fontSize: `${10 + Math.random() * 10}px`,
+              fontSize: `${8 + Math.random() * 3}px`,
             }}
           >
             ❄
@@ -32,14 +32,14 @@ const FeaturesStrip: React.FC = () => {
       <div className="flex animate-scroll whitespace-nowrap">
         {[...features, ...features, ...features].map((feature, index) => (
           <div key={index} className="flex items-center mx-12">
-            <span className="text-white text-[56px] md:text-[70px] font-bold">
+            <span className="text-white text-[44px] md:text-[70px] font-bold">
               {feature}
             </span>
             <div className="w-10 h-10 rounded-full bg-white ml-20" />
           </div>
         ))}
       </div>
-
+\
 
       <style jsx>{`
         @keyframes scroll {

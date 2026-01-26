@@ -12,17 +12,21 @@ const Header: React.FC = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-8">
-          <Link
-            href="/about"
-            className="text-gray-300 hover:text-white transition-colors duration-200"
+          <Link 
+              href="https://github.com/bourdillion/sagon/tree/main" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer"
           >
-            About
+              Github
           </Link>
-          <Link
-            href="/docs"
-            className="text-gray-300 hover:text-white transition-colors duration-200"
+          <Link 
+              href="https://docs.google.com/document/d/1WYZPRIs436OPDQzJhuvYD1RKu-QMsr3CPpMvzjShlIg/edit?usp=sharing" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer"
           >
-            Docs
+              Docs
           </Link>
         </div>
 
