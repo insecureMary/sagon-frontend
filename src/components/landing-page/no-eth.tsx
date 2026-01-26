@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const NoETH: React.FC = () => {
   return (
-    <section className="relative h-screen bg-black overflow-hidden">
+    <section className="relative md:h-screen py-20 md:py-0 bg-black overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(25)].map((_, i) => (
           <div
@@ -27,9 +27,9 @@ const NoETH: React.FC = () => {
       <div className="container mx-auto px-6 py-6 relative z-10 h-full">
         <div className="flex items-center justify-center h-full">
           <div className="max-w-9xl">
-            <div className="flex px-4 py-2 border-2 border-[#008236] rounded-full flex justify-center place-self-center">
-              <span className="text-[10px] font-medium text-[#008236] ">
-                  COMING SOON!
+            <div className="flex px-4 py-2 border-2 border-[#008236] rounded-full w-fit mx-auto">
+              <span className="text-[10px] font-medium text-[#008236]">
+                COMING SOON!
               </span>
             </div>
 

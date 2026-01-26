@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const FOOTER: React.FC = () => {
   return (
-    <section className="relative overflow-hidden min-w-full bg-green-950/40 pt-60">
+    <section className="relative overflow-hidden min-w-full bg-green-950/40 pt-20 md:pt-60">
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(25)].map((_, i) => (
           <div

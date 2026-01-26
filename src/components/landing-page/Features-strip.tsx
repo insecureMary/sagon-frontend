@@ -11,7 +11,7 @@ const FeaturesStrip: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-black py-40 overflow-hidden h-screen">
+    <section className="relative bg-black py-20 md:py-40 overflow-hidden md:h-screen">
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(25)].map((_, i) => (
           <div
