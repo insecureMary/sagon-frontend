@@ -67,26 +67,24 @@ export default function GasComparison({ optimizedGas, standardGas }: GasComparis
 
     return (
         <div className="mb-12 max-w-5xl mx-auto">
-            <div className="bg-white backdrop-blur-xl border border-green-500/30 rounded-2xl p-8 shadow-xl">
+            <div className="bg-white dark:bg-black backdrop-blur-xl border border-green-500/30 rounded-2xl p-4 shadow-xl">
                 <h2 className="text-3xl font-bold text-center mb-8 text-[#008236]">
                     Gas Metrics
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
-                    <div className="relative overflow-hidden bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl p-6">
-                        <div className="absolute top-0 right-0 text-8xl opacity-5">⚡</div>
+                    <div className="relative overflow-hidden bg-gradient-to-br from-green-500/10 to-lime-500/10 border border-green-500/30 rounded-xl p-6">
                         <div className="relative z-10">
-                            <div className="text-cyan-400 text-sm font-semibold mb-2">OPTIMIZED (HUFF)</div>
-                            <div className="text-4xl font-bold text-white mb-2 font-mono">
+                            <div className="text-[#008236] text-sm font-semibold mb-2">OPTIMIZED (HUFF)</div>
+                            <div className="text-4xl font-bold text-black mb-2 font-mono">
                                 {optimizedGas ? animatedOptimized.toLocaleString() : "—"}
                             </div>
                             <div className="text-slate-400 text-xs">gas units</div>
                             
-                            {/* Progress Bar */}
                             {optimizedGas && (
                                 <div className="mt-4 h-2 bg-slate-700 rounded-full overflow-hidden">
                                     <div 
-                                        className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-1000 ease-out"
+                                        className="h-full bg-gradient-to-r from-green-500 to-lime-500 transition-all duration-1000 ease-out"
                                         style={{ width: `${optimizedGas && standardGas ? (optimizedGas / standardGas * 100) : 100}%` }}
                                     />
                                 </div>
@@ -94,17 +92,15 @@ export default function GasComparison({ optimizedGas, standardGas }: GasComparis
                         </div>
                     </div>
 
-                    {/* Standard Gas */}
+
                     <div className="relative overflow-hidden bg-gradient-to-br from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-xl p-6">
-                        <div className="absolute top-0 right-0 text-8xl opacity-5">🔥</div>
                         <div className="relative z-10">
                             <div className="text-orange-400 text-sm font-semibold mb-2">STANDARD (SOLIDITY)</div>
-                            <div className="text-4xl font-bold text-white mb-2 font-mono">
+                            <div className="text-4xl font-bold text-black mb-2 font-mono">
                                 {standardGas ? animatedStandard.toLocaleString() : "—"}
                             </div>
                             <div className="text-slate-400 text-xs">gas units</div>
                             
-                            {/* Progress Bar */}
                             {standardGas && (
                                 <div className="mt-4 h-2 bg-slate-700 rounded-full overflow-hidden">
                                     <div 
@@ -117,39 +113,38 @@ export default function GasComparison({ optimizedGas, standardGas }: GasComparis
                     </div>
                 </div>
 
-                {/* Savings Display */}
                 {savings && gasSaved && (
-                    <div className="relative overflow-hidden bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-green-500/20 border-2 border-green-500/50 rounded-xl p-8">
+                    <div className="relative overflow-hidden bg-gradient-to-r from-green-600/20 via-emerald-600/20 to-green-600/20 border-2 border-green-500/50 rounded-xl p-4 sm:p-6 md:p-8">
                         <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-emerald-500/5 to-green-500/5 animate-pulse" />
                         
                         <div className="relative z-10 text-center">
-                            <div className="text-green-400 text-sm font-semibold mb-3">💰 GAS SAVED</div>
+                            <div className="text-green-400 text-sm font-semibold mb-3">GAS SAVED</div>
                             
-                            <div className="flex items-center justify-center gap-8 mb-4">
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 mb-4">
                                 <div>
-                                    <div className="text-5xl font-bold text-green-300 font-mono">
+                                    <div className="text-3xl sm:text-4xl font-bold text-green-500 font-mono">
                                         {savings}%
                                     </div>
-                                    <div className="text-slate-400 text-xs mt-1">efficiency gain</div>
+                                    <div className="text-slate-400 text-xs mt-1">gain</div>
                                 </div>
                                 
-                                <div className="h-16 w-px bg-slate-600" />
+                                <div className="hidden sm:block h-16 w-px bg-slate-600" />
+                                <div className="block sm:hidden h-px w-16 bg-slate-600" />
                                 
                                 <div>
-                                    <div className="text-3xl font-bold text-green-300 font-mono">
+                                    <div className="text-2xl sm:text-3xl font-bold text-green-500 font-mono">
                                         {gasSaved.toLocaleString()}
                                     </div>
                                     <div className="text-slate-400 text-xs mt-1">gas units saved</div>
                                 </div>
                             </div>
 
-                            <div className="text-slate-300 text-sm">
-                                By using Huff assembly optimization, you saved{" "}
+                            <div className="text-slate-600 text-xs sm:text-sm px-2">
+                                By using the gas optimized route, you saved{" "}
                                 <span className="text-green-400 font-bold">{savings}%</span> on gas costs
                             </div>
                         </div>
 
-                        {/* Animated particles */}
                         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                             <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-green-400/50 rounded-full animate-float-1" />
                             <div className="absolute top-1/2 left-3/4 w-2 h-2 bg-green-400/50 rounded-full animate-float-2" />
@@ -158,41 +153,39 @@ export default function GasComparison({ optimizedGas, standardGas }: GasComparis
                     </div>
                 )}
 
-                {/* Visual Comparison Chart */}
-                {optimizedGas && standardGas && (
-                    <div className="mt-8 pt-8 border-t border-slate-700">
-                        <h3 className="text-lg font-semibold text-slate-300 mb-4 text-center">Visual Comparison</h3>
-                        
-                        <div className="space-y-4">
-                            {/* Optimized Bar */}
-                            <div className="flex items-center gap-4">
-                                <div className="w-32 text-sm text-cyan-400 font-semibold">Optimized</div>
-                                <div className="flex-1 h-12 bg-slate-800 rounded-lg overflow-hidden relative">
-                                    <div 
-                                        className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-1000 ease-out flex items-center justify-end pr-4"
-                                        style={{ width: `${(optimizedGas / Math.max(optimizedGas, standardGas) * 100)}%` }}
-                                    >
-                                        <span className="text-white text-xs font-bold">{optimizedGas.toLocaleString()}</span>
-                                    </div>
+            {optimizedGas && standardGas && (
+                <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-slate-700">
+                    <h3 className="text-base sm:text-lg font-semibold text-slate-300 mb-3 sm:mb-4 text-center">Visual Comparison</h3>
+                    
+                    <div className="space-y-3 sm:space-y-4">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+                            <div className="w-full sm:w-32 text-xs sm:text-sm text-green-400 font-semibold">Optimized</div>
+                            <div className="w-full sm:flex-1 h-10 sm:h-12 bg-slate-800 rounded-lg overflow-hidden relative">
+                                <div 
+                                    className="h-full bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-1000 ease-out flex items-center justify-end pr-2 sm:pr-4"
+                                    style={{ width: `${(optimizedGas / Math.max(optimizedGas, standardGas) * 100)}%` }}
+                                >
+                                    <span className="text-white text-xs font-bold">{optimizedGas.toLocaleString()}</span>
                                 </div>
                             </div>
+                        </div>
 
-                            {/* Standard Bar */}
-                            <div className="flex items-center gap-4">
-                                <div className="w-32 text-sm text-orange-400 font-semibold">Standard</div>
-                                <div className="flex-1 h-12 bg-slate-800 rounded-lg overflow-hidden relative">
-                                    <div 
-                                        className="h-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-1000 ease-out flex items-center justify-end pr-4"
-                                        style={{ width: `${(standardGas / Math.max(optimizedGas, standardGas) * 100)}%` }}
-                                    >
-                                        <span className="text-white text-xs font-bold">{standardGas.toLocaleString()}</span>
-                                    </div>
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+                            <div className="w-full sm:w-32 text-xs sm:text-sm text-orange-400 font-semibold">Standard</div>
+                            <div className="w-full sm:flex-1 h-10 sm:h-12 bg-slate-800 rounded-lg overflow-hidden relative">
+                                <div 
+                                    className="h-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-1000 ease-out flex items-center justify-end pr-2 sm:pr-4"
+                                    style={{ width: `${(standardGas / Math.max(optimizedGas, standardGas) * 100)}%` }}
+                                >
+                                    <span className="text-white text-xs font-bold">{standardGas.toLocaleString()}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
+        
+        
 
             <style jsx>{`
                 @keyframes float-1 {
@@ -217,6 +210,7 @@ export default function GasComparison({ optimizedGas, standardGas }: GasComparis
                     animation: float-3 3.5s ease-in-out infinite;
                 }
             `}</style>
+            </div>
         </div>
     );
 }
