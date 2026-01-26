@@ -15,35 +15,31 @@ export default function SendToken() {
     });
 
     return (
-        <div className="min-h-screen">
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-radial from-blue-500/10 via-transparent to-transparent animate-pulse-slow" />
-                <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-radial from-cyan-500/10 via-transparent to-transparent animate-pulse-slow-delayed" />
-            </div>
+        <div className="min-h-screen bg-white dark:bg-black">
 
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-6">
 
                 <div className="mb-16 max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold mb-6 flex justify-center">
+                    <h2 className="text-3xl font-bold mb-6 flex justify-center sm:text-xl text-center">
                         How it all works in 3 simple steps
                     </h2>
                     <div className="grid md:grid-cols-3 gap-6">
-                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50 transition-all duration-300 group">
+                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50">
                             <h3 className="font-bold text-lg mb-2 text-[#008236]">1. Enter Details</h3>
                             <p className="text-black dark:text-white text-sm">
                                Connect wallet and provide the token address, recipient addresses (comma or newline separated), and amounts for each recipient.
                             </p>
                         </div>
-                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50 transition-all duration-300 group">
+                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50">
                             <h3 className="font-bold text-lg mb-2 text-[#008236]">2. Approve Tokens</h3>
                             <p className="text-black dark:text-white text-sm">
                                 The system automatically checks allowance and requests approval if needed before executing the airdrop.
                             </p>
                         </div>
-                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50 transition-all duration-300 group">
+                        <div className="p-6 bg-white dark:bg-black backdrop-blur-xl border border-[#008236]/60 rounded-xl hover:border-green-500/50">
                             <h3 className="font-bold text-lg mb-2 text-[#008236]">3. Execute Airdrop</h3>
                             <p className="text-black dark:text-white text-sm">
-                                Tokens are distributed efficiently in a single transaction, saving you time and gas fees.
+                                Tokens are distributed in a single transaction, saving you time and gas fees.
                             </p>
                         </div>
 
@@ -53,13 +49,14 @@ export default function SendToken() {
                 {(gasUsed.optimized || gasUsed.standard) && (
                     <GasComparison optimizedGas={gasUsed.optimized} standardGas={gasUsed.standard} />
                 )}
+                
 
 
-                <div className="mb-8">
-                    <div className="flex items-center justify-center gap-4 p-2 backdrop-blur-xl  rounded-2xl max-w-2xl mx-auto bg-white dark:bg-black shadow-sm">
+                <div className="mb-2 lg:mb-4">
+                    <div className="flex items-center justify-center gap-2 lg:gap-4 p-2 backdrop-blur-xl  rounded-2xl max-w-2xl mx-auto bg-white dark:bg-black shadow-sm">
                         <button
                             onClick={() => setActiveTab("optimized")}
-                            className={`flex-1 relative px-8 py-4 rounded-xl font-semibold duration-700 cursor-pointer ${
+                            className={`flex-1 relative px-4 py-2 lg:px-8 lg:py-4 rounded-xl font-semibold duration-700 cursor-pointer ${
                                 activeTab === "optimized"
                                     ? "bg-gradient-to-r from-lime-800 to-green-800 text-white shadow-sm shadow-green-500/50"
                                     : "text-slate-400 hover:text-white hover:bg-slate-800/50"
@@ -68,7 +65,7 @@ export default function SendToken() {
                             <div className="flex items-center justify-center gap-2 ">
                                 <div className="text-left">
                                     <div className="text-sm font-bold">OPTIMIZED</div>
-                                    <div className="text-xs opacity-75">Huff Assembly</div>
+                                    <div className="text-xs opacity-75 sr-only sm:not-sr-only">Huff Assembly</div>
                                 </div>
                             </div>
                             {activeTab === "optimized" && (
@@ -78,7 +75,7 @@ export default function SendToken() {
 
                         <button
                             onClick={() => setActiveTab("standard")}
-                            className={`flex-1 relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
+                            className={`flex-1 relative px-4 py-2 lg:px-8 lg:py-4 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
                                 activeTab === "standard"
                                     ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-sm shadow-orange-500/50"
                                     : "text-slate-400 hover:text-white hover:bg-slate-800/50"
@@ -87,7 +84,7 @@ export default function SendToken() {
                             <div className="flex items-center justify-center gap-2">
                                 <div className="text-left">
                                     <div className="text-sm font-bold">STANDARD</div>
-                                    <div className="text-xs opacity-75">Solidity</div>
+                                    <div className="text-xs opacity-75 sr-only sm:not-sr-only">Solidity</div>
                                 </div>
                             </div>
                             {activeTab === "standard" && (
@@ -95,36 +92,6 @@ export default function SendToken() {
                             )}
                         </button>
                     </div>
-
-                    {/* <div className="mt-6 max-w-2xl mx-auto">
-                        {activeTab === "optimized" ? (
-                            <div className="p-6 bg-gradient-to-r from-lime-500/10 to-green-500/10 border border-green-500/30 rounded-xl backdrop-blur-sm">
-                                <div className="flex items-start gap-3">
-                                    <div>
-                                        <h3 className="font-bold text-green-300 mb-2">Optimized Version (Recommended)</h3>
-                                        <p className="text-slate-300 text-sm leading-relaxed">
-                                            Leverages Huff assembly language for bytecode-level optimization. 
-                                            Reduces gas costs by eliminating redundant operations and maximizing EVM efficiency.
-                                            <span className="text-green-400 font-semibold"> Perfect for high-volume airdrops.</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="p-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-xl backdrop-blur-sm">
-                                <div className="flex items-start gap-3">
-                                    <div>
-                                        <h3 className="font-bold text-orange-300 mb-2">Standard Version</h3>
-                                        <p className="text-slate-300 text-sm leading-relaxed">
-                                            Traditional Solidity implementation for comparison. 
-                                            Uses standard ERC20 patterns with higher gas consumption.
-                                            <span className="text-orange-400 font-semibold"> Try both versions to see the difference!</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div> */}
                 </div>
 
                 <div className="mt-8">
