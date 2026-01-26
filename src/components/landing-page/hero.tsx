@@ -6,15 +6,15 @@ const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen bg-black overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(50)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <div
             key={i}
-            className="snowflake absolute text-white opacity-70"
+            className="snowflake absolute text-white opacity-60"
             style={{
               left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 2}s`,
+              animationDelay: `${Math.random() * 0}s`,
               animationDuration: `${10 + Math.random() * 10}s`,
-              fontSize: `${10 + Math.random() * 10}px`,
+              fontSize: `${10 + Math.random() * 5}px`,
             }}
           >
             ❄
@@ -22,10 +22,10 @@ const Hero: React.FC = () => {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 relative z-10 min-h-screen">
-        <div className="flex items-center justify-center sm:justify-start min-h-screen py-16 sm:py-0">
+      <div className="container mx-auto px-4 sm:px-6 py-4 relative z-10 min-h-screen">
+        <div className="flex items-center justify-center sm:justify-start py-16">
           <div className="max-w-6xl w-full">
-            <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 border-2 border-[#008236] rounded-full mb-6 sm:mb-8">
+            <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 border-2 border-[#008236] rounded-full">
               <span className="text-[9px] sm:text-[10px] md:text-[11px] font-medium text-[#008236]">
                 Send Tokens Without Ether! COMING SOON!!!
               </span>

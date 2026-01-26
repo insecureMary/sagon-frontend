@@ -249,8 +249,6 @@ export default function StandardAirdrop({ onGasUsed }: StandardAirdropProps) {
                         )}
                         
                         <span className="relative z-10 flex items-center justify-center gap-2">
-                            {step === "success" && "✅"}
-                            {step === "error" && "❌"}
                             {getStepMessage()}
                         </span>
                     </button>
