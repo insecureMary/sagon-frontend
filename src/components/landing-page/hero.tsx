@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
               </span>
             </div>
 
-            <h1 className="text-[40px] sm:text-[48px] md:text-[66px] lg:text-[96px] font-bold text-white leading-tight mb-6">
+            <h1 className="text-[48px] sm:text-[48px] md:text-[66px] lg:text-[96px] font-bold text-white leading-tight">
               The cheapest <br />transaction you will do <br />without using any ether
             </h1>
           </div>
