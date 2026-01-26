@@ -52,11 +52,11 @@ export default function SendToken() {
                 
 
 
-                <div className="mb-8">
-                    <div className="flex items-center justify-center gap-4 p-2 backdrop-blur-xl  rounded-2xl max-w-2xl mx-auto bg-white dark:bg-black shadow-sm">
+                <div className="mb-2 lg:mb-4">
+                    <div className="flex items-center justify-center gap-2 lg:gap-4 p-2 backdrop-blur-xl  rounded-2xl max-w-2xl mx-auto bg-white dark:bg-black shadow-sm">
                         <button
                             onClick={() => setActiveTab("optimized")}
-                            className={`flex-1 relative px-8 py-4 rounded-xl font-semibold duration-700 cursor-pointer ${
+                            className={`flex-1 relative px-4 py-2 lg:px-8 lg:py-4 rounded-xl font-semibold duration-700 cursor-pointer ${
                                 activeTab === "optimized"
                                     ? "bg-gradient-to-r from-lime-800 to-green-800 text-white shadow-sm shadow-green-500/50"
                                     : "text-slate-400 hover:text-white hover:bg-slate-800/50"
@@ -65,7 +65,7 @@ export default function SendToken() {
                             <div className="flex items-center justify-center gap-2 ">
                                 <div className="text-left">
                                     <div className="text-sm font-bold">OPTIMIZED</div>
-                                    <div className="text-xs opacity-75">Huff Assembly</div>
+                                    <div className="text-xs opacity-75 sr-only sm:not-sr-only">Huff Assembly</div>
                                 </div>
                             </div>
                             {activeTab === "optimized" && (
@@ -75,7 +75,7 @@ export default function SendToken() {
 
                         <button
                             onClick={() => setActiveTab("standard")}
-                            className={`flex-1 relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
+                            className={`flex-1 relative px-4 py-2 lg:px-8 lg:py-4 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
                                 activeTab === "standard"
                                     ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-sm shadow-orange-500/50"
                                     : "text-slate-400 hover:text-white hover:bg-slate-800/50"
@@ -84,7 +84,7 @@ export default function SendToken() {
                             <div className="flex items-center justify-center gap-2">
                                 <div className="text-left">
                                     <div className="text-sm font-bold">STANDARD</div>
-                                    <div className="text-xs opacity-75">Solidity</div>
+                                    <div className="text-xs opacity-75 sr-only sm:not-sr-only">Solidity</div>
                                 </div>
                             </div>
                             {activeTab === "standard" && (
