@@ -4,23 +4,23 @@ import React from 'react';
 
 const SaveGas: React.FC = () => {
   return (
-    <section className="relative min-h-screen bg-black overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(50)].map((_, i) => (
+    <section className="relative md:min-h-screen py-30 md:py-0 bg-black overflow-hidden ">
+  <div className="absolute inset-0 pointer-events-none">
+        {[...Array(25)].map((_, i) => (
           <div
             key={i}
-            className="snowflake absolute text-white opacity-70"
+            className={`snowflake absolute text-white opacity-30 lg:opacity-60 ${i >= 10 ? 'hidden sm:block' : ''}`}
             style={{
               left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 2}s`,
+              animationDelay: `${Math.random() * 0}s`,
               animationDuration: `${10 + Math.random() * 10}s`,
-              fontSize: `${10 + Math.random() * 10}px`,
+              fontSize: `${8 + Math.random() * 3}px`,
             }}
           >
             ❄
           </div>
         ))}
-      </div>
+    </div>
 
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 relative z-10 min-h-screen">
         <div className="flex items-center justify-center sm:justify-start min-h-screen py-16 sm:py-0">
@@ -40,8 +40,7 @@ const SaveGas: React.FC = () => {
             </h2>
           </div>
 
-          {/* Lottie Animation - Hidden on mobile, repositioned on tablet+ */}
-          <div className="hidden lg:block absolute bottom-8 right-10 w-48 h-48 xl:w-64 xl:h-64">
+          <div className="absolute bottom-8 right-10 w-48 h-48 xl:w-64 xl:h-64">
             <div id="lottie-animation" className="w-full h-full">
               <div className="w-full h-full bg-gradient-to-br from-[#2CEDB1]/20 to-[#29BEE7]/20 rounded-full animate-pulse" />
             </div>
